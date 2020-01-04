@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">nCrypt</string>
+    <string name="passwordTitle">Title</string>
+    <string name="password">Password</string>
+    <string name="generatePassword">Generate a password</string>
+    <string name="useLowerCase">Use lowercase letters</string>
+    <string name="useUpperCase">Use uppercase letters</string>
+    <string name="useNumbers">Use numbers</string>
+    <string name="useSimpleChars">Use simple characters</string>
+    <string name="useComplexChars">Use complex characters</string>
 </resources>

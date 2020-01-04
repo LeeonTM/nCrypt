@@ -9,13 +9,13 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity(tableName = "Password")
 data class Password (
-    @PrimaryKey
-    @ColumnInfo(name = "uuid")
-    val uuid: String,
-
     @ColumnInfo(name = "name")
     val name: String,
 
     @ColumnInfo(name = "passwordHash")
-    val passwordHash: String
+    val passwordHash: String,
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Long? = null
 ) : Parcelable
