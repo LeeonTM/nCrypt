@@ -4,13 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.n.crypt.database.dao.CredentialDao
 import com.n.crypt.database.dao.PasswordDao
+import com.n.crypt.database.model.Credential
 import com.n.crypt.database.model.Password
 
-@Database(entities = [Password::class], version = 1, exportSchema = false)
+@Database(entities = [Password::class, Credential::class], version = 2, exportSchema = false)
 abstract class PasswordRoomDatabase : RoomDatabase() {
 
     abstract fun passwordDao(): PasswordDao
+    abstract fun credentialDao(): CredentialDao
 
     companion object {
         private const val DATABASE_NAME = "PASSWORD_DATABASE"

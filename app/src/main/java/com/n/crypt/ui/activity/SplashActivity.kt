@@ -21,7 +21,7 @@ class SplashActivity : AppCompatActivity() {
         startActivity(
             Intent(
                 this@SplashActivity,
-                OverviewActivity::class.java
+                LoginActivity::class.java
             )
         )
     }

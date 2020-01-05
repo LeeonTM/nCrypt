@@ -90,7 +90,7 @@ class OverviewActivity : AppCompatActivity() {
                 val position = viewHolder.adapterPosition
                 var passwordToDelete = passwords[position]
 
-                if (direction > 0) {
+                if (direction > 4) {
                     // TODO: Unhash password and copy to clipboard
                 } else {
                     CoroutineScope(Dispatchers.Main).launch {
