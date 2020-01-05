@@ -4,8 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail
 import com.n.crypt.R
 import com.n.crypt.database.model.Credential
 import com.n.crypt.ui.ViewModel.LoginActivityViewModel
@@ -53,11 +55,12 @@ class LoginActivity : AppCompatActivity() {
                     OverviewActivity::class.java
                 )
             )
+        } else {
+            Toast.makeText(this, R.string.loginError, Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun register() {
-        // TODO: Encrypt pass
         var credentials = Credential(
             txtLoginEmail.text.toString(),
             txtLoginPassword.text.toString()
@@ -71,7 +74,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun sendForgotPasswordEmail() {
-        // TODO: send mail
+        BackgroundMail.newBuilder(this)
+            .withUsername("ncrypt.noreply@gmail.com")
+            .withPassword("")
+            .withSenderName("nCrypt")
+            .withMailTo(loginActivityViewModel.credentials.value!!.first().email)
+            .withType(BackgroundMail.TYPE_PLAIN)
+            .withSubject("Your nCrypt password")
+            .withBody(loginActivityViewModel.credentials.value!!.first().passwordHash)
+            .send()
     }
 
     private fun initViewModel() {

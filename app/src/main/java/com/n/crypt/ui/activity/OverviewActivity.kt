@@ -1,10 +1,14 @@
 package com.n.crypt.ui.activity
 
+import android.R.attr.label
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -20,6 +24,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 
 class OverviewActivity : AppCompatActivity() {
 
@@ -91,15 +96,19 @@ class OverviewActivity : AppCompatActivity() {
                 var passwordToDelete = passwords[position]
 
                 if (direction > 4) {
-                    // TODO: Unhash password and copy to clipboard
+                    val clipboard: ClipboardManager =
+                        getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                    val clip = ClipData.newPlainText("password", passwordToDelete.passwordHash)
+                    clipboard.setPrimaryClip(clip)
                 } else {
                     CoroutineScope(Dispatchers.Main).launch {
                         withContext(Dispatchers.IO) {
                             overviewActivityViewModel.deletePassword(passwordToDelete)
                         }
                     }
-                    passwordAdapter.notifyDataSetChanged()
                 }
+
+                passwordAdapter.notifyDataSetChanged()
             }
         }
 

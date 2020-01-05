@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.n.crypt">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -12,6 +16,7 @@
         <activity android:name=".ui.activity.AddActivity"></activity>
         <activity android:name=".ui.activity.OverviewActivity" />
         <activity android:name=".ui.activity.LoginActivity" />
+
         <activity
             android:name=".ui.activity.SplashActivity"
             android:noHistory="true"

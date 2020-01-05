@@ -38,9 +38,8 @@ class OverviewActivityViewModel(application: Application): AndroidViewModel(appl
         mainScope.launch {
             withContext(Dispatchers.IO) {
                 credentialRepository.deleteAllCredentials()
+                exitProcess(1)
             }
         }
-
-        exitProcess(1)
     }
 }

@@ -30,7 +30,6 @@ class AddActivity : AppCompatActivity() {
 
     private fun initViews() {
         btnGeneratePassword.setOnClickListener {
-            // TODO: Generate password using service and fill textbox
             txtPasswordPass.setText(
                 passwordGenerator.generatePassword(
                     chkUseLowerCase.isChecked,
@@ -45,7 +44,7 @@ class AddActivity : AppCompatActivity() {
         fabCreate.setOnClickListener {
             var password = Password(
                 txtPasswordTitle.text.toString(),
-                txtPasswordPass.text.toString() // TODO: Hash the password before its saved in the db
+                txtPasswordPass.text.toString()
             )
 
             addActivityViewModel.insertPassword(password)
